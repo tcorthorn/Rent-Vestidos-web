@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Sku: {{ arriendo.sku }}</h1>
+
+  <p><strong>Cliente:</strong> <a href=""> {% for cliente in arriendo.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %} </a></p> <!-- author detail link not yet defined -->
+
+  <p><strong>Sku:</strong> {{ arriendo.sku }}</p>
+  <p><strong>Fecha inicio arriendo:</strong> {{ arriendo.fecha_inicio_arriendo }}</p>
+  <p><strong>Fecha a devolver:</strong> {{ arriendo.fecha_a_devolver }}</p>
+  <p><strong>Fecha que devolvió:</strong> {{ arriendo.fecha_que_devolvio }}</p>
+  <p><strong>Valor pagado </strong> {{ arriendo.valor_pagado }}</p>
+  <p><strong>Fecha de pago:</strong> {{ arriendo.fecha_de_pago }}</p> 
+  <p><strong>Comentario:</strong> {{ arriendo.comentario }}</p>
+
+{% endblock %}

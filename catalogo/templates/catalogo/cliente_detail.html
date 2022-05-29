@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Datos Cliente </h1>
+
+  <br>
+  <p><strong>Nombre:</strong> {{ cliente.nombre}}</p>
+  <p><strong>Apellidos:</strong> {{ cliente.apellidos }}</p>
+  <p><strong>Rut</strong> {{ cliente.rut}}</p>
+  <p><strong>email</strong> {{ cliente.email }}</p>
+  <p><strong>Telefono:</strong> {{ cliente.telefono }}</p>
+
+  
+{% endblock %}

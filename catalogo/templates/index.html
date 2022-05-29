@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Arriendo Vestidos <em>Borangora</em> </h2>
+
+  <p>Sitio de Administración de <em>Borangora</em>, para el arriendo de vestidos.</p>
+
+<h3>Datos Actualizados :</h3>
+
+  <p>La Tienda tiene hoy lo siguiente:</p>
+  <ul>
+    <li><strong>Vestidos:</strong> {{ vestidos }}</li>
+    
+    
+    <br>
+
+    <li><strong>Vestidos disponibles:</strong> {{ vestidos_disponibles }}</li>
+    <li><strong>Vestidos arrendados:</strong> {{ vestidos_arrendados }}</li>
+    <li><strong>Vestidos en mantencion:</strong> {{ vestidos_mantencion }}</li>
+    <br>
+    <li><strong>Vestidos reservados:</strong> {{ vestidos_reservados }}</li>
+
+    <br><br>
+    <li><strong>Clientes:</strong> {{ clientes }}</li>
+    <br>
+    <li><strong>Proveedores:</strong> {{ proveedores }}</li>
+    <br>
+    
+
+  </ul>
+
+{% endblock %}

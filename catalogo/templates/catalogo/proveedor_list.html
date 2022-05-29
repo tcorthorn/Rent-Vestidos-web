@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Lista de Proveedores</h2>
+    <br>
+    {% if proveedor_list %}
+    <ul>
+
+      {% for proveedor in proveedor_list %}
+      <li>
+      
+        <a href="{{ proveedor.get_absolute_url }}">{{ proveedor.nombre }}</a> ({{proveedor.email}}) 
+        <br>
+        <br>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay Clientes.</p>
+    {% endif %} 
+{% endblock %}

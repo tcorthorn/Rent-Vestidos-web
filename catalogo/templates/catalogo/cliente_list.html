@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Lista de Clientes</h2>
+    <br>
+    {% if cliente_list %}
+    <ul>
+
+      {% for cliente in cliente_list %}
+      <li>
+        
+        <a href="{{ cliente.get_absolute_url }}">{{ cliente.apellidos }}</a> {{cliente.nombre}}&nbsp &nbsp
+         <strong> RUT :  </strong> {{cliente.rut}} &nbsp &nbsp &nbsp &nbsp
+        
+        <a href="{% url 'cliente_update' cliente.pk %}">Modificar cliente</a> &nbsp &nbsp
+        <a href="{% url 'cliente_delete' cliente.pk %}">Eliminar cliente</a> 
+      <br>
+      <br>
+      </li>
+      {% endfor %}
+      
+    </ul>
+    {% else %}
+      <p>No hay Clientes.</p>
+    {% endif %} 
+{% endblock %}

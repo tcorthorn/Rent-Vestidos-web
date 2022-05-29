@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Devueltos</h1>
+
+    {% if devuelto_list %}
+    <ul>
+
+
+      {% for arriendo in devuelto_list %}
+      <li>
+        <a href="{{ arriendo.get_absolute_url }}">{{ arriendo.cliente }}</a> ({{arriendo.sku}})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay vestidos reservados.</p>
+    {% endif %} 
+{% endblock %}

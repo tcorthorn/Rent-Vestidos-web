@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Vestidos </h2>
+    <br>
+    {% if vestido_list  %}
+    <ul>
+
+      {% for vestido in vestido_list %}
+      <li>
+        
+        <a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a>  &nbsp &nbsp &nbsp &nbsp
+        <strong> Sku :</strong>{{vestido.sku}}  &nbsp &nbsp &nbsp &nbsp
+        <strong> Status :</strong>{{vestido.status}} &nbsp &nbsp &nbsp &nbsp &nbsp
+        
+        <a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a> 
+        <br>
+        <br>
+        
+
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay vestidos en la tienda.</p>
+    {% endif %} 
+{% endblock %}
+
+
+

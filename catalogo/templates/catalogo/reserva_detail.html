@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Datos Reserva </h2>
+
+  
+
+  <p><strong>Cliente que reserva  :</strong> {% for cliente in reserva.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>  Fecha reservada   :</strong> {{reserva.fecha_reservada}}</p>
+  <p><strong>  Sku     :   </strong> {{reserva.sku}}</p>
+
+  
+
+  
+  
+{% endblock %}

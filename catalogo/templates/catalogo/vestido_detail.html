@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Vestido  : {{ vestido.nombre }}</h2>
+
+  <br>
+  <p><strong>Sku :</strong> {{ vestido.sku }}</p>
+  <p><strong>Talla :</strong> {{ vestido.talla }}</p>
+  <p><strong>Categoria :</strong> {{ vestido.categoria }}</p>
+  <p><strong>Detalle :</strong> {{ vestido.detalle }}</p>
+
+  <p><strong>Proveedor:</strong> <a href="{% url 'detalle-proveedor' vestido.proveedor.id %}">{{ vestido.proveedor }}</a></p> 
+  
+  <h3>Reservas : <strong>{{ vestido.reservado}}</strong> </h3>
+
+  <div style="margin-left:40px;margin-top:30px">
+    <h4>Detalle arriendo del vestido</h4>
+
+    <h3>Status hoy : <strong>{{ vestido.status}}</strong> </h3>
+    
+    <h5>Historial </h5>
+    
+
+    {% for copy in vestido.arriendo_set.all %}
+    <hr>
+    <p><strong>Cliente:</strong> {% for cliente in copy.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    {% if vestido.status != 'disponible' %}<p><strong>Debe ser devuelto el:</strong> {{copy.fecha_a_devolver}}</p>
+    {% endif %}
+    
+
+    <p><strong>Fecha inicio :</strong> {{copy.fecha_inicio}}</p>
+    <p><strong>Fecha que devolvió:</strong> {{copy.fecha_que_devolvio}}</p>
+    <p><strong>Dato creado:</strong> {{copy.creado}}</p>
+    <p><strong>Dato modificado:</strong> {{copy.modificado}}</p>
+
+    {% endfor %}
+
+
+
+{% endblock %}
