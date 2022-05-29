@@ -1,5 +1,5 @@
 from logging import PlaceHolder
-from msilib.schema import Class
+#from msilib.schema import Class
 from pickle import TRUE
 from tkinter import CASCADE
 from trace import Trace
