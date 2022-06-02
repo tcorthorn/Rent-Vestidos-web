@@ -50,7 +50,7 @@ class ReservaInline(admin.TabularInline):
 
 @admin.register(Vestido)
 class VestidoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
-    list_display = ( 'sku','status','reservado','nombre','talla', 'categoria','proveedor' )
+    list_display = ( 'sku','status','nombre','talla', 'categoria','reservado', 'fecha_reservada' )
     list_filter = ('status','talla','categoria')
     resources_class=Vestido
     search_fields=('fecha_a_devolver', )
