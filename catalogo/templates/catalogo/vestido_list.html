@@ -9,11 +9,15 @@
       {% for vestido in vestido_list %}
       <li>
         
-        <a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a>  &nbsp &nbsp &nbsp &nbsp
-        <strong> Sku :</strong>{{vestido.sku}}  &nbsp &nbsp &nbsp &nbsp
-        <strong> Status :</strong>{{vestido.status}} &nbsp &nbsp &nbsp &nbsp &nbsp
+        <a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a>  &nbsp &nbsp &nbsp 
+        <strong> Sku :</strong> &nbsp {{vestido.sku}}  &nbsp &nbsp &nbsp 
+        <strong> Status :</strong> &nbsp {{vestido.status}} &nbsp &nbsp &nbsp 
         
-        <a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a> 
+        <a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a> &nbsp &nbsp &nbsp &nbsp 
+
+        <strong> Reserva :</strong> &nbsp {{vestido.reservado}} &nbsp &nbsp &nbsp &nbsp &nbsp
+
+        <strong> Fecha fecha_reservada :</strong> &nbsp {{vestido.fecha_reservada}}
         <br>
         <br>
         
