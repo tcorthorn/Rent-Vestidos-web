@@ -24,13 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-x0bzpya7-$gbi75z=8n9r6(gx7pok5axn5o4t7^nia7sknemxy'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+#SECRET_KEY = 'django-insecure-x0bzpya7-$gbi75z=8n9r6(gx7pok5axn5o4t7^nia7sknemxy'
 import os
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-x0bzpya7-$gbi75z=8n9r6(gx7pok5axn5o4t7^nia7sknemxy')
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -121,11 +118,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-#STATIC_URL = 'static/'
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -143,8 +135,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
 
 
 # Simplified static file serving.
