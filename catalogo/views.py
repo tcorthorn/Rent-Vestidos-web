@@ -70,7 +70,7 @@ class ArriendoListView(generic.ListView):
 
 class VestidoDetailView(generic.DetailView):
     model = Vestido
-    paginate_by = 2
+    paginate_by = 10
 
 class ClienteDetailView(generic.DetailView):
     model = Cliente

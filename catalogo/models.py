@@ -151,9 +151,6 @@ class Arriendo(models.Model):
     )
     status = models.CharField(max_length=15, choices=LOAN_STATUS, blank=True, default='mantencion', help_text='Disponibilidad del vestido')
     
-    #borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-
-    
     
     #def get_absolute_url(self):
     """         Devuelve el URL a una instancia particular de Arriendo         """
@@ -184,12 +181,14 @@ class Arriendo(models.Model):
         """"         Creates a string for the cliente. This is required to display cliente in Admin.        """
 
         return ', '.join([ cliente.apellidos for cliente in self.cliente.all()[:3] ])
+        
     display_cliente.short_description = 'Apellidos'
 
     def display_cliente2(self):
         """"         Creates a string for the cliente. This is required to display cliente in Admin.        """
 
         return ', '.join([ cliente.nombre for cliente in self.cliente.all()[:3] ])
+        
     display_cliente2.short_description = 'Nombre'
     
     class Meta:
