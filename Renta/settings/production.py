@@ -13,8 +13,12 @@ ALLOWED_HOSTS = ['rentaweb.herokuapp.com']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db2.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'Rentaweb',
+        'USER': 'postgres',
+        'PASSWORD': '123321',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT':'5432',
     }
 }
 
