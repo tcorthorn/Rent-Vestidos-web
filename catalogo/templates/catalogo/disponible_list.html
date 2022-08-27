@@ -1,19 +1,45 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h2>Disponibles</h2>
+  <h3>Disponibles</h3>
   <br>
-    {% if disponible_list %}
+    
     <ul>
-
       {% for vestido in disponible_list %}
       <li>
-        <a href="{{ vestido.get_absolute_url }}">{{ vestido.nombre }}</a> ({{vestido.sku}})
+        <a href="{{ vestido.get_absolute_url }}">{{ vestido.nombre }}</a> 
+        ({{vestido.sku}})
       </li>
       {% endfor %}
-
     </ul>
     {% else %}
       <p>No hay vestidos disponibles.</p>
     {% endif %} 
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="">Vestido</th>
+          <th scope="">Sku</th>
+          
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if disponible_list %}
+        {% for vestido in disponible_list %}
+        <tr>
+            <td><a href="{{ vestido.get_absolute_url }}">{{ vestido.nombre }}</a> </td>
+            <td>{{vestido.sku}}</td>
+        </tr>
+          {% endfor %}
+        {% else %}
+        <p>No hay vestidos disponibles.</p>
+        {% endif %} 
+      </tbody>
+      
+    </table>
+
+
+
 {% endblock %}

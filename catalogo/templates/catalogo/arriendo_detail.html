@@ -1,7 +1,8 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Sku: {{ arriendo.sku }}</h1>
+
+  <h2>Sku: {{ arriendo.sku }}</h2>
 
   <p><strong>Cliente:</strong> <a href=""> {% for cliente in arriendo.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %} </a></p> <!-- author detail link not yet defined -->
 
@@ -12,5 +13,36 @@
   <p><strong>Valor pagado </strong> {{ arriendo.valor_pagado }}</p>
   <p><strong>Fecha de pago:</strong> {{ arriendo.fecha_de_pago }}</p> 
   <p><strong>Comentario:</strong> {{ arriendo.comentario }}</p>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="">Cliente</th>
+        <th scope="">SKU</th>
+        <th scope="">Fecha inicio arriendo</th>
+        <th scope="">Fecha a devolver</th>
+        <th scope="">Fecha que devolvió</th>
+        <th scope="">Valor pagado</th>
+        <th scope="">Fecha de pago</th>
+        <th scope="">Comentario</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td><a href=""> {% for cliente in arriendo.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %} </a></td>
+        <td>{{ arriendo.sku }}</td>
+        <td>{{ arriendo.fecha_inicio_arriendo }}</td>
+        <td>{{ arriendo.fecha_a_devolver }}</td>
+        <td>{{ arriendo.fecha_que_devolvio }}</td>
+        <td>{{ arriendo.valor_pagado}}</td>
+        <td>{{ arriendo.fecha_de_pago }}</td>
+        <td>{{ arriendo.comentario }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
 
 {% endblock %}

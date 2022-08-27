@@ -2,24 +2,30 @@
 
 {% block content %}
     <h2>Reservados</h2>
-    <br>
+    
     {% if reserva_list %}
-    <ul>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="">SKU</th>
+      <th scope="">Fecha Reservada</th>
+      <th scope="">Actualizar reserva</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for reserva in reserva_list %}
+    <tr>
+       <td> {{ reserva.sku }}</td>
+       <td>{{reserva.fecha_reservada}}</td>
+       <td><a href="{% url 'reserva_update' reserva.pk %}">Actualizar reserva cliente</a> </td>
+      <td style ="color:blue"> </td>
+    </tr>
+    {% endfor %}
 
+  </tbody>
+</table>
 
-      {% for reserva in reserva_list %}
-      <li>
-        <a href="{{ reserva.get_absolute_url }}">  
-        <strong> Sku : </strong> {{ reserva.sku }}</a>  &nbsp &nbsp &nbsp
-        <strong> Fecha reservada : </strong> {{reserva.fecha_reservada}} &nbsp &nbsp &nbsp
-        <a href="{% url 'reserva_update' reserva.pk %}">Actualizar reserva cliente</a> 
-        <br>
-        <br>
-      </li>
-      {% endfor %}
-
-    </ul>
-    {% else %}
-      <p>No hay vestidos reservados.</p>
-    {% endif %} 
+{% else %}
+<p>No hay vestidos reservados.</p>
+{% endif %}
 {% endblock %}

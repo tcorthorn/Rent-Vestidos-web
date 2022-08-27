@@ -2,25 +2,37 @@
 
 {% block content %}
     <h2>Lista de Clientes</h2>
-    <br>
-    {% if cliente_list %}
-    <ul>
 
-      {% for cliente in cliente_list %}
-      <li>
-        
-        <a href="{{ cliente.get_absolute_url }}">{{ cliente.apellidos }}</a> {{cliente.nombre}}&nbsp &nbsp
-         <strong> RUT :  </strong> {{cliente.rut}} &nbsp &nbsp &nbsp &nbsp
-        
-        <a href="{% url 'cliente_update' cliente.pk %}">Modificar cliente</a> &nbsp &nbsp
-        <a href="{% url 'cliente_delete' cliente.pk %}">Eliminar cliente</a> 
-      <br>
-      <br>
-      </li>
-      {% endfor %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="">Apellido</th>
+          <th scope="">Nombre</th>
+          <th scope="">RUT</th>
+          <th scope="">Modificar cliente</th>
+          <th scope="">Eliminar cliente</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if cliente_list %}
+          {% for cliente in cliente_list %}
+        <tr>
+            <td><a href="{{ cliente.get_absolute_url }}">{{ cliente.apellidos }}</td>
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.rut}}</td>
+            <td><a href="{% url 'cliente_update' cliente.pk %}">Modificar cliente</a></td>
+            <td><a href="{% url 'cliente_delete' cliente.pk %}">Eliminar cliente</a> </td>
+        </tr>
+          {% endfor %}
+        {% else %}
+          <p>No hay salidas de productos.</p>
+        {% endif %} 
+      </tbody>
       
-    </ul>
-    {% else %}
-      <p>No hay Clientes.</p>
-    {% endif %} 
+    </table>
+
+
+
+
 {% endblock %}

@@ -16,10 +16,10 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd32k779tmo0qll',
-        'USER': 'dnkkykanbxtmdh',
-        'PASSWORD': '905c1a4eb9f74b05d521aee0103bc19e283980ea36340773cf426f495e402f50',
-        'HOST': 'ec2-44-196-223-128.compute-1.amazonaws.com',
+        'NAME': 'Rentaweb',
+        'USER': 'postgres',
+        'PASSWORD': '123321',
+        'HOST': '127.0.0.1',
         'DATABASE_PORT':'5432',
     }
 }

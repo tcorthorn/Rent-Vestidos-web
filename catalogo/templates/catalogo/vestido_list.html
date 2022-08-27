@@ -1,34 +1,41 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>Vestidos </h2>
+    <h3>Vestidos </h3>
     <br>
-    {% if vestido_list  %}
-    <ul>
 
-      {% for vestido in vestido_list %}
-      <li>
-        
-        <a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a>  &nbsp &nbsp &nbsp 
-        <strong> Sku :</strong> &nbsp {{vestido.sku}}  &nbsp &nbsp &nbsp 
-        <strong> Status :</strong> &nbsp {{vestido.status}} &nbsp &nbsp &nbsp 
-        
-        <a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a> &nbsp &nbsp &nbsp &nbsp 
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="">Vestido</th>
+          <th scope="">Sku</th>
+          <th scope="">Status</th>
+          <th scope="">Modificar Status </th>
+          <th scope="">Reserva</th>
+          <th scope="">Fecha Reservada</th>
+        </tr>
+      </thead>
 
-        <strong> Reserva :</strong> &nbsp {{vestido.reservado}} &nbsp &nbsp &nbsp &nbsp &nbsp
+      <tbody>
+        {% if vestido_list  %}
+        {% for vestido in vestido_list %}
+        <tr>
+            <td><a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a></td>
+            <td>{{vestido.sku}}</td>
+            <td>{{vestido.status}}</td>
+            <td><a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a></td>
+            <td>{{vestido.reservado}}</td>
+            <td>{{vestido.fecha_reservada}}</td>
+        </tr>
+          {% endfor %}
+        {% else %}
+        <p>No hay vestidos en la tienda.</p>
+        {% endif %} 
+      </tbody>
+      
+    </table>
 
-        <strong> Fecha fecha_reservada :</strong> &nbsp {{vestido.fecha_reservada}}
-        <br>
-        <br>
-        
 
-      </li>
-      {% endfor %}
-
-    </ul>
-    {% else %}
-      <p>No hay vestidos en la tienda.</p>
-    {% endif %} 
 {% endblock %}
 
 

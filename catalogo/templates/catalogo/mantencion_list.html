@@ -16,4 +16,33 @@
     {% else %}
       <p>No hay vestidos en mantención.</p>
     {% endif %} 
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="">Vestido</th>
+          <th scope="">Sku</th>
+          
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if mantencion_list %}
+        {% for vestido in mantencion_list %}
+        <tr>
+            <td><a href="{{ vestido.get_absolute_url }}">{{ vestido.nombre }}</a> </td>
+            <td>{{vestido.sku}}</td>
+        </tr>
+          {% endfor %}
+        {% else %}
+        <p>No hay vestidos en mantención.</p>
+        {% endif %} 
+      </tbody>
+      
+    </table>
+
+
+
+
+
 {% endblock %}

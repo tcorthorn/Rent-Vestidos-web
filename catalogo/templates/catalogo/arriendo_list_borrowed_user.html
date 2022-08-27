@@ -8,8 +8,7 @@
 
       {% for bookinst in arriendo_list %}
       <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'detalle-vestido' bookinst.vestido.pk %}">{{bookinst.vestido.nombre}}</a> ({{ bookinst.fecha_a_devolver
-         }})
+        <a href="{% url 'detalle-vestido' bookinst.vestido.pk %}">{{bookinst.vestido.nombre}}</a> ({{ bookinst.fecha_a_devolver }})
       </li>
       {% endfor %}
     </ul>

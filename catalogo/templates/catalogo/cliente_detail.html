@@ -1,14 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Datos Cliente </h1>
-
-  <br>
-  <p><strong>Nombre:</strong> {{ cliente.nombre}}</p>
-  <p><strong>Apellidos:</strong> {{ cliente.apellidos }}</p>
-  <p><strong>Rut</strong> {{ cliente.rut}}</p>
-  <p><strong>email</strong> {{ cliente.email }}</p>
-  <p><strong>Telefono:</strong> {{ cliente.telefono }}</p>
+  <h3>Datos Cliente </h3>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="">Nombre</th>
+        <th scope="">Apellidos</th>
+        <th scope="">RUT</th>
+        <th scope="">email</th>
+        <th scope="">Teléfono</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ cliente.nombre}}</td>
+        <td>{{ cliente.apellidos}}</td>
+        <td>{{ cliente.rut}}</td>
+        <td>{{ cliente.email }}</td>
+        <td> {{ cliente.telefono }}</td>
+      </tr>
+    </tbody>
+  </table>
 
   
 {% endblock %}
