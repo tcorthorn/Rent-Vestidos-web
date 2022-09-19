@@ -1,15 +1,10 @@
 from django.shortcuts import render
-
 from catalogo.forms import ReservaForm
-
-# Create your views here.
-
 from .models import Proveedor, Categoria, Vestido,  Cliente, Arriendo, Reserva
 from django.views import generic
 from datetime import date
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-
 
 def index(request):
     """
@@ -44,7 +39,6 @@ def index(request):
         }
     )
 
-
 class VestidoListView(generic.ListView):
     model = Vestido
     paginate_by = 10
@@ -64,7 +58,6 @@ class ReservaListView(generic.ListView):
 class ArriendoListView(generic.ListView):
     model = Arriendo
     paginate_by = 10
-
 
 # Detalle de la Clase
 
@@ -87,7 +80,6 @@ class ReservaDetailView(generic.DetailView):
 class ArriendoDetailView(generic.DetailView):
     model = Arriendo
     paginate_by = 10
-
     
     #Listas genericas de status de la clase Vestido
 
@@ -109,8 +101,6 @@ class MantencionListView(generic.ListView):
     queryset = Vestido.objects.filter(status__icontains='mantencion') #vestidos mantencion
     template_name = 'Vestido/mantencion_list.html'  # Specify your own template name/location
 
-    
-
 #CRUD
 
 class ClienteCreate(CreateView):
@@ -128,7 +118,7 @@ class ClienteDelete(DeleteView):
 
 class ArriendoCreate(CreateView):
     model = Arriendo
-    fields = '__all__'
+    fields = ['sku','cliente','fecha_inicio','fecha_a_devolver','fecha_que_devolvio','comentario']
   
 class ArriendoUpdate(UpdateView):
     model = Arriendo
@@ -138,19 +128,17 @@ class ArriendoDelete(DeleteView):
     model = Arriendo
     success_url = reverse_lazy('arrendados')
 
-
 class VestidoCreate(CreateView):
     model = Vestido
     fields = ['sku','status']
 
 class VestidoUpdate(UpdateView):
     model = Vestido
-    fields = ['sku','status']
+    fields = ['status','reservado','fecha_reservada']
 
 class VestidoDelete(DeleteView):
     model = Vestido
     success_url = reverse_lazy('vestidos')
-
 
 class ReservaCreate(CreateView):
     model = Reserva

@@ -1,31 +1,10 @@
 {% extends "base_generic.html" %}
-
-{% block content %}
-    <h3>Arrendados</h3>
-
-    {% if arriendo_list %}
-    <ul>
-
-      {% for arriendo in arriendo_list %}
-      <li>
-        <br>
-        <a href="{{ arriendo.get_absolute_url }}"> {% for cliente in arriendo.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %}</a> 
-        <strong>Fecha a devolver  :</strong> {{  arriendo.fecha_a_devolver }}
-        
-      </li>
-      {% endfor %}
-
-    </ul>
-    {% else %}
-      <p>No hay vestidos arrendados.</p>
-    {% endif %} 
-
+{% block content %}      
     <table class="table table-striped">
       <thead>
         <tr>
           <th scope="">Cliente</th>
           <th scope="">Fecha a devolver</th>
-          
         </tr>
       </thead>
 
@@ -38,12 +17,8 @@
         </tr>
           {% endfor %}
         {% else %}
-          <p>No hay salidas de productos.</p>
+          <p>No hay vestidos arrendados</p>
         {% endif %} 
       </tbody>
-      
     </table>
-
-
-    
 {% endblock %}

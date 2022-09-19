@@ -8,17 +8,18 @@
   <thead>
     <tr>
       <th scope="">SKU</th>
-      <th scope="">Fecha Reservada</th>
-      <th scope="">Actualizar reserva</th>
+      <th scope="">CLIENTE</th>
+      <th scope="">FECHA RESERVADA</th>
+      <th scope="">ACTUALIZAR RESERVA</th>
     </tr>
   </thead>
   <tbody>
     {% for reserva in reserva_list %}
     <tr>
-       <td> {{ reserva.sku }}</td>
+       <td><a href="{% url 'detalle-vestido' reserva.pk %}"> {{ reserva.sku }}</a></td>
+       <td><a href="{% url 'detalle-cliente' reserva.pk %}">{% for cliente in reserva.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %}</a></td>
        <td>{{reserva.fecha_reservada}}</td>
-       <td><a href="{% url 'reserva_update' reserva.pk %}">Actualizar reserva cliente</a> </td>
-      <td style ="color:blue"> </td>
+       <td><a href="{% url 'reserva_update' reserva.pk %}">Actualizar reserva cliente</a> </td> <td style ="color:blue"> </td>
     </tr>
     {% endfor %}
 

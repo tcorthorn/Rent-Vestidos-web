@@ -1,40 +1,64 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h2>Vestido  : {{ vestido.nombre }}</h2>
-
+  <h3>{{ vestido.nombre }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reservas : <strong>{{ vestido.reservado}}</strong> </h3>
   <br>
-  <p><strong>Sku :</strong> {{ vestido.sku }}</p>
-  <p><strong>Talla :</strong> {{ vestido.talla }}</p>
-  <p><strong>Categoria :</strong> {{ vestido.categoria }}</p>
-  <p><strong>Detalle :</strong> {{ vestido.detalle }}</p>
-
-  <p><strong>Proveedor:</strong> <a href="{% url 'detalle-proveedor' vestido.proveedor.id %}">{{ vestido.proveedor }}</a></p> 
-  
-  <h3>Reservas : <strong>{{ vestido.reservado}}</strong> </h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="">SKU </th>
+        <th scope="">NOMBRE </th>
+        <th scope="">TALLA  </th>
+        <th scope="">CATEGORIA</th>
+        <th scope="">DETALLE</th>
+        <th scope="">RESERVA</th>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td>{{ vestido.sku }}</td>
+        <td>{{ vestido.nombre }}</td>
+        <td>{{ vestido.talla }}</td>
+        <td>{{ vestido.categoria }}</td>
+        <td>{{ vestido.detalle }}</td>
+        <td><strong>{{ vestido.reservado}}</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
   <div style="margin-left:40px;margin-top:30px">
-    <h4>Detalle arriendo del vestido</h4>
-
-    <h3>Status hoy : <strong>{{ vestido.status}}</strong> </h3>
     
-    <h5>Historial </h5>
-    
+    <h5>Historial de Arriendos</h5>
+    <br>
 
-    {% for copy in vestido.arriendo_set.all %}
-    <hr>
-    <p><strong>Cliente:</strong> {% for cliente in copy.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-    {% if vestido.status != 'disponible' %}<p><strong>Debe ser devuelto el:</strong> {{copy.fecha_a_devolver}}</p>
-    {% endif %}
-    
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="">CLIENTE</th>
+          <th scope="">FECHA INICIO</th>
+          <th scope="">DEBE DEVOLVER</th>
+          <th scope="">FECHA QUE DEVOLVIÓ</th>
+          <th scope="">COMENTARIO</th>
+          <th scope="">CREADO</th>
+          <th scope="">MODIFICADO</th>
+        </tr>
+      </thead>
 
-    <p><strong>Fecha inicio :</strong> {{copy.fecha_inicio}}</p>
-    <p><strong>Fecha que devolvió:</strong> {{copy.fecha_que_devolvio}}</p>
-    <p><strong>Dato creado:</strong> {{copy.creado}}</p>
-    <p><strong>Dato modificado:</strong> {{copy.modificado}}</p>
-
-    {% endfor %}
-
-
-
+      <tbody>
+        {% for copy in vestido.arriendo_set.all %}
+        <tr>
+            <td><a href="{% url 'detalle-cliente' vestido.pk %}">{% for cliente in copy.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %} </a></td>
+            <td>{{copy.fecha_inicio}}</td>
+            <td>{{copy.fecha_a_devolver}}</td>
+            <td>{{copy.fecha_que_devolvio}}</td>
+            <td>{{copy.comentario}}</td>
+            <td>{{copy.creado}}</td>
+            <td>{{copy.modificado}}</td>
+        </tr>
+        {% endfor %}
+        
+       
+      </tbody>
+      
+</table>
 {% endblock %}

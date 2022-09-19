@@ -7,12 +7,11 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="">Vestido</th>
-          <th scope="">Sku</th>
-          <th scope="">Status</th>
-          <th scope="">Modificar Status </th>
-          <th scope="">Reserva</th>
-          <th scope="">Fecha Reservada</th>
+          <th scope="">VER ARRIENDOS</th>
+          <th scope="">SKU</th>
+          <th scope="">STATUS</th>
+          <th scope="">VER RESERVAS</th>
+          <th scope="">MODIFICAR STATUS </th>
         </tr>
       </thead>
 
@@ -23,9 +22,8 @@
             <td><a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a></td>
             <td>{{vestido.sku}}</td>
             <td>{{vestido.status}}</td>
+            <td><a href="{% url 'detalle-reservas' vestido.pk %}">{{vestido.reservado}}</a></td>
             <td><a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a></td>
-            <td>{{vestido.reservado}}</td>
-            <td>{{vestido.fecha_reservada}}</td>
         </tr>
           {% endfor %}
         {% else %}
