@@ -7,6 +7,9 @@ from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
 
+from django.core.exceptions import ValidationError
+import datetime #para chequear rango de fecha de reserva.
+
 class Categoria(models.Model):
     nombre= models.CharField(max_length=100, help_text="Ingrese el nombre de la Categoría (p. ej. Noche, Largo, Corto, Fiesta etc.)")
     def __str__(self):
@@ -45,9 +48,10 @@ class Proveedor(models.Model):
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     apellidos= models.CharField(max_length=100)
-    rut =models.CharField(unique=True, max_length=11, help_text='RUT sin puntos, con guión y con digito verificador', default="12345678-9")
+    rut =models.CharField(unique=True, max_length=11, help_text='RUT sin puntos, con guión y digito verificador', default="12345678-9")
     email = models.EmailField()
     telefono = models.CharField(max_length=10)
+    comentario = models.CharField(max_length=500,null=True, blank=True)
     def get_absolute_url(self):
         """  Retorna la url para acceder a una instancia particular de un cliente.   """
         return reverse('detalle-cliente', args=[str(self.id)])
@@ -101,17 +105,21 @@ class Vestido(models.Model):
 class Arriendo(models.Model):
     sku = models.ForeignKey('Vestido', help_text="VERIFIQUE el status del sku que identifica a este vestido particular", on_delete=models.SET_NULL, null=True)
     cliente = models.ManyToManyField('Cliente', help_text="Seleccione el cliente que arrienda")
-    fecha_inicio= models.DateField(null=True, blank=True , help_text="Fecha inicio del arriendo")
-    fecha_a_devolver = models.DateField(null=True, blank=True , help_text="Fecha que debe devolver el vestido")
-    fecha_que_devolvio = models.DateField(null=True, blank=True , help_text="Fecha que devolvió el vestido")
-    creado= models.DateField(auto_now_add=True)
-    modificado= models.DateField(auto_now=True)
+    fecha_inicio= models.DateField(null=True, blank=True , help_text="Fecha inicio del arriendo: Formato dd/mm/aaaa")
+    fecha_a_devolver = models.DateField(null=True, blank=True , help_text="Fecha que debe devolver el vestido: Formato dd/mm/aaaa")
+    fecha_que_devolvio = models.DateField(null=True, blank=True , help_text="Fecha que devolvió el vestido: Formato dd/mm/aaaa")
+    fecha_anticipo=models.DateField(null=True, blank=True)
+    anticipo=models.IntegerField(default=0)
+    fecha_saldo=models.DateField(null=True, blank=True)
+    saldo=models.IntegerField(default=0)
     comentario = models.CharField(max_length=500, null=True,blank=True)
     LOAN_STATUS = (
         ('arrendado', 'Arrendado'), 
     )
     status = models.CharField(max_length=15, choices=LOAN_STATUS, blank=True, default='mantencion', help_text='Disponibilidad del vestido') 
-   
+    creado= models.DateField(auto_now_add=True)
+    modificado= models.DateField(auto_now=True)
+
     @property
     def is_overdue(self):
         if self.fecha_a_devolver and date.today() > self.fecha_a_devolver:
@@ -131,27 +139,22 @@ class Arriendo(models.Model):
         return '%s' % (self.cliente, )
     def display_cliente(self):
         """"         Creates a string for the cliente. This is required to display cliente in Admin.        """
-
-        return ', '.join([ cliente.apellidos for cliente in self.cliente.all()[:3] ])
-        
-    display_cliente.short_description = 'Apellidos'
+        return ', '.join([ cliente.apellidos for cliente in self.cliente.all()[:3] ]) 
+        display_cliente.short_description = 'Apellidos'
     def display_cliente2(self):
         """"         Creates a string for the cliente. This is required to display cliente in Admin.        """
-
         return ', '.join([ cliente.nombre for cliente in self.cliente.all()[:3] ]) 
-    display_cliente2.short_description = 'Nombre'
-    
+        display_cliente2.short_description = 'Nombre'
     class Meta:
         ordering = ['-fecha_inicio']
 
 
 class Reserva(models.Model):
-    sku = models.ForeignKey(Vestido,on_delete=models.SET_NULL, null=True, help_text="Seleccione el cliente que reserva" )
+    sku = models.ForeignKey(Vestido,on_delete=models.SET_NULL, null=True, help_text="Seleccione el Sku del vestido que reserva" )
     cliente = models.ManyToManyField(Cliente)
-    fecha_reservada = models.DateField()
+    fecha_reservada = models.DateField(help_text="Formato: dd/mm/aaaa")
     creado= models.DateField(auto_now_add=True)
     modificado= models.DateField(auto_now=True)
-
     def __str__(self):
         return self.sku
     def __str__(self):
@@ -163,12 +166,10 @@ class Reserva(models.Model):
         return reverse('detalle-reservas', args=[str(self.id)])
     def display_cliente(self):
         """"         Crea a string for the cliente. This is required to display cliente in Admin.        """
-
         return ', '.join([ cliente.apellidos for cliente in self.cliente.all()[:3] ])
     display_cliente.short_description = 'Apellidos'
     def display_cliente2(self):
         """"         Creates a string for the cliente. This is required to display cliente in Admin.        """
-
         return ', '.join([ cliente.nombre for cliente in self.cliente.all()[:3] ])
     display_cliente2.short_description = 'Nombre'
     class Meta():
@@ -176,6 +177,20 @@ class Reserva(models.Model):
         verbose_name_plural ='reservas'
     class Meta:
         ordering = ['-fecha_reservada']
+
+    def clean_fecha_reservada(self):
+        data = self.cleaned_data['fecha_reservada']
+
+        #Check date is not in past.
+        if data < datetime.date.today():
+            raise ValidationError(('Fecha inválida - reserva en el pasado'))
+
+        #Check date is in range librarian allowed to change (+4 weeks).
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Fecha inválida - reserva a mas de 4 semanas desde hoy'))
+
+        # Remember to always return the cleaned data.
+        return data
         
 
 class Pago(models.Model):

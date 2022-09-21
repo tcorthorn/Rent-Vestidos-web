@@ -1,13 +1,20 @@
 {% extends "base_generic.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
-<form action="" method="post">
+<form method="post" novalidate>
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Ingresar" />
-
-</form>
+      <div class="row">
+        <div class="col-5">
+          {{ form.sku|as_crispy_field }}
+        </div>
+        <div class="col-5">
+          {{ form.cliente|as_crispy_field }}
+        </div>
+        <div class="col-5">
+          {{ form.fecha_reservada|as_crispy_field }}
+        </div>
+      </div>
+        <button type="submit" class="btn btn-success">Ingresar</button>
+    </form>
 {% endblock %}

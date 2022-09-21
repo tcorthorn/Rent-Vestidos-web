@@ -26,7 +26,7 @@ admin.site.register(Proveedor, ProveedorAdmin)
 
 @admin.register(Cliente)
 class ClienteAdmin(ImportExportModelAdmin,admin.ModelAdmin):
-    list_display = ('nombre','apellidos','rut', 'email', 'telefono')
+    list_display = ('nombre','apellidos','rut', 'email', 'telefono','comentario')
     list_filter = ('apellidos', 'nombre')
     resources_class=Cliente
     search_fields=("nombre", )
@@ -58,7 +58,7 @@ class VestidoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
 
 @admin.register(Arriendo)
 class ArriendoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
-    list_display = ('sku','display_cliente','display_cliente2','fecha_inicio','fecha_a_devolver','fecha_que_devolvio','creado', 'modificado','comentario')
+    list_display = ('sku','display_cliente','display_cliente2','fecha_inicio','fecha_a_devolver','fecha_que_devolvio','fecha_anticipo','anticipo','fecha_saldo','saldo','comentario')
     fields = ['sku','cliente', ('fecha_inicio', 'fecha_a_devolver','fecha_que_devolvio'),'comentario']
     list_filter = ('sku',)
     resources_class=Arriendo

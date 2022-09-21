@@ -1,13 +1,29 @@
 {% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-
-<form action="" method="post">
+  <form method="post" novalidate>
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Ingresar" />
 
-</form>
+    <div class="row">
+      <div class="col-6">
+        {{ form.sku|as_crispy_field }}
+      </div>
+      <div class="col-6">
+        {{ form.cliente|as_crispy_field }}
+      </div>
+      <div class="col-4">
+        {{ form.fecha_inicio|as_crispy_field }}
+      </div>
+      <div class="col-4">
+        {{ form.fecha_a_devolver|as_crispy_field }}
+      </div>
+      <div class="col-4">
+        {{ form.fecha_que_devolvio|as_crispy_field }}
+      </div>
+    </div>
+
+        {{ form.comentario|as_crispy_field }}
+    <button type="submit" class="btn btn-success">Ingresar</button>
+  </form>
 {% endblock %}

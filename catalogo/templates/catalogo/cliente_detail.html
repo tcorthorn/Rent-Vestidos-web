@@ -1,17 +1,17 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h3>Datos Cliente </h3>
+<h4 style ="color:blue"> Datos de Clientes: </h4>
   
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="">Nombre</th>
-        <th scope="">Apellidos</th>
+        <th scope="">NOMBRE</th>
+        <th scope="">APELLIDO</th>
         <th scope="">RUT</th>
-        <th scope="">email</th>
-        <th scope="">Teléfono</th>
-        
+        <th scope="">EMAIL</th>
+        <th scope="">TELEFONO</th>
+        <th scope="">COMENTARIO</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +21,7 @@
         <td>{{ cliente.rut}}</td>
         <td>{{ cliente.email }}</td>
         <td> {{ cliente.telefono }}</td>
+        <td> {{ cliente.comentario }}</td>
       </tr>
     </tbody>
   </table>

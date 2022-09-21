@@ -106,35 +106,42 @@ class MantencionListView(generic.ListView):
 class ClienteCreate(CreateView):
     model = Cliente
     fields = '__all__'
+    success_url = reverse_lazy('clientes')
     
 class ClienteUpdate(UpdateView):
     model = Cliente
     fields = '__all__'
+    success_url = reverse_lazy('clientes')
 
 class ClienteDelete(DeleteView):
     model = Cliente
     success_url = reverse_lazy('clientes')
+    fields = '__all__'
 
 
 class ArriendoCreate(CreateView):
     model = Arriendo
     fields = ['sku','cliente','fecha_inicio','fecha_a_devolver','fecha_que_devolvio','comentario']
-  
+    success_url = reverse_lazy('vestidos')
+
 class ArriendoUpdate(UpdateView):
     model = Arriendo
     fields = '__all__'
+    success_url = reverse_lazy('vestidos')
 
 class ArriendoDelete(DeleteView):
     model = Arriendo
-    success_url = reverse_lazy('arrendados')
+    success_url = reverse_lazy('vestidos')
 
 class VestidoCreate(CreateView):
     model = Vestido
     fields = ['sku','status']
+    success_url = reverse_lazy('vestidos')
 
 class VestidoUpdate(UpdateView):
     model = Vestido
     fields = ['status','reservado','fecha_reservada']
+    success_url = reverse_lazy('vestidos')
 
 class VestidoDelete(DeleteView):
     model = Vestido
@@ -144,12 +151,14 @@ class ReservaCreate(CreateView):
     model = Reserva
     #form_class = ReservaForm
     fields = '__all__'
+    success_url = reverse_lazy('vestidos')
 
 class ReservaUpdate(UpdateView):
     model = Reserva
     fields = '__all__'
+    success_url = reverse_lazy('vestidos')
 
 class ReservaDelete(DeleteView):
     model = Reserva
-    success_url = reverse_lazy('reservas')
+    success_url = reverse_lazy('vestidos')
 

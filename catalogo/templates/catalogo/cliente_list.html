@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>Lista de Clientes</h2>
+<h4 style ="color:blue"> Lista de Clientes: </h4>
 
     <table class="table table-striped">
       <thead>
@@ -9,6 +9,8 @@
           <th scope="">APELLIDO</th>
           <th scope="">NOMBRE</th>
           <th scope="">RUT</th>
+          <th scope="">EMAIL</th>
+          <th scope="">TELEFONO</th>
           <th scope="">MODIFICAR CLIENTE</th>
           <th scope="">ELIMINAR CLIENTE</th>
         </tr>
@@ -21,6 +23,8 @@
             <td><a href="{{ cliente.get_absolute_url }}">{{ cliente.apellidos }}</td>
             <td>{{cliente.nombre}}</td>
             <td>{{cliente.rut}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.telefono}}</td>
             <td><a href="{% url 'cliente_update' cliente.pk %}">Modificar cliente</a></td>
             <td><a href="{% url 'cliente_delete' cliente.pk %}">Eliminar cliente</a> </td>
         </tr>

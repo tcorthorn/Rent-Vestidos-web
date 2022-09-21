@@ -1,13 +1,29 @@
 {% extends "base_generic.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
-<form action="" method="post">
+    <form method="post" novalidate>
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Ingresar" />
-
-</form>
-{% endblock %}
+      <div class="row">
+        <div class="col-6">
+          {{ form.nombre|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.apellidos|as_crispy_field }}
+        </div>
+        <div class="col-4">
+          {{ form.rut|as_crispy_field }}
+        </div>
+        <div class="col-4">
+          {{ form.email|as_crispy_field }}
+        </div>
+        <div class="col-4">
+          {{ form.telefono|as_crispy_field }}
+        </div>
+        <div class="col-12">
+          {{ form.comentario|as_crispy_field }}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Ingresar</button>
+    </form>
+  {% endblock %}

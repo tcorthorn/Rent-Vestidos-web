@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h3>{{ vestido.nombre }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reservas : <strong>{{ vestido.reservado}}</strong> </h3>
+  <h3 style ="color:blue">{{ vestido.nombre }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reservas : <strong>{{ vestido.reservado}}</strong> </h3>
   <br>
   <table class="table table-striped">
     <thead>
@@ -28,7 +28,7 @@
 
   <div style="margin-left:40px;margin-top:30px">
     
-    <h5>Historial de Arriendos</h5>
+    <h4 style ="color:blue"> Historial de arriendo del vestido: </h4>
     <br>
 
 <table class="table table-striped">
@@ -38,9 +38,11 @@
           <th scope="">FECHA INICIO</th>
           <th scope="">DEBE DEVOLVER</th>
           <th scope="">FECHA QUE DEVOLVIÓ</th>
+          <th scope="">FECHA ANTICIPO</th>
+          <th scope="">ANTICIPO</th>
+          <th scope="">FECHA SALDO</th>
+          <th scope="">SALDO</th>
           <th scope="">COMENTARIO</th>
-          <th scope="">CREADO</th>
-          <th scope="">MODIFICADO</th>
         </tr>
       </thead>
 
@@ -51,14 +53,13 @@
             <td>{{copy.fecha_inicio}}</td>
             <td>{{copy.fecha_a_devolver}}</td>
             <td>{{copy.fecha_que_devolvio}}</td>
+            <td>{{copy.fecha_anticipo}}</td>
+            <td>{{copy.anticipo}}</td>
+            <td>{{copy.fecha_saldo}}</td>
+            <td>{{copy.saldo}}</td>
             <td>{{copy.comentario}}</td>
-            <td>{{copy.creado}}</td>
-            <td>{{copy.modificado}}</td>
         </tr>
         {% endfor %}
-        
-       
-      </tbody>
-      
+      </tbody>  
 </table>
 {% endblock %}

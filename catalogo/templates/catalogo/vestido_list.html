@@ -1,14 +1,15 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h3>Vestidos </h3>
+<h4 style ="color:blue"> Vestidos: </h4>
     <br>
 
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="">VER ARRIENDOS</th>
           <th scope="">SKU</th>
+          <th scope="">VER ARRIENDOS</th>
+          <th scope="">TALLA</th>
           <th scope="">STATUS</th>
           <th scope="">VER RESERVAS</th>
           <th scope="">MODIFICAR STATUS </th>
@@ -19,11 +20,12 @@
         {% if vestido_list  %}
         {% for vestido in vestido_list %}
         <tr>
-            <td><a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a></td>
-            <td>{{vestido.sku}}</td>
-            <td>{{vestido.status}}</td>
-            <td><a href="{% url 'detalle-reservas' vestido.pk %}">{{vestido.reservado}}</a></td>
-            <td><a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a></td>
+          <td>{{vestido.sku}}</td>
+          <td><a href="{{ vestido.get_absolute_url }}"> {{ vestido.nombre }}</a></td>
+          <td>{{vestido.talla}}</td>  
+          <td>{{vestido.status}}</td>
+          <td><a href="{% url 'detalle-reservas' vestido.pk %}">{{vestido.reservado}}</a></td>
+          <td><a href="{% url 'vestido_update' vestido.pk %}">Modificar status</a></td>
         </tr>
           {% endfor %}
         {% else %}

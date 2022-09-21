@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalogo',
     'import_export',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
