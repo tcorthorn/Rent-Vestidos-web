@@ -47,3 +47,4 @@ urlpatterns += [
     path('reserva/(<pk>/update/', views.ReservaUpdate.as_view(), name='reserva_update'),
     path('reserva/<pk>/delete/', views.ReservaDelete.as_view(), name='reserva_delete'),
 ]
+

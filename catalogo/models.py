@@ -177,21 +177,12 @@ class Reserva(models.Model):
         verbose_name_plural ='reservas'
     class Meta:
         ordering = ['-fecha_reservada']
-
-    def clean_fecha_reservada(self):
-        data = self.cleaned_data['fecha_reservada']
-
-        #Check date is not in past.
-        if data < datetime.date.today():
-            raise ValidationError(('Fecha inválida - reserva en el pasado'))
-
-        #Check date is in range librarian allowed to change (+4 weeks).
-        if data > datetime.date.today() + datetime.timedelta(weeks=4):
-            raise ValidationError(_('Fecha inválida - reserva a mas de 4 semanas desde hoy'))
-
-        # Remember to always return the cleaned data.
-        return data
         
+    #def clean(self):
+        #if self.fecha_reservada < datetime.date.today():
+            #raise ValidationError(('Fecha inválida - reserva en el pasado'))
+        
+
 
 class Pago(models.Model):
     sku = models.ForeignKey(Vestido,on_delete=models.SET_NULL, null=True, help_text='Ingrese el Sku del vestido que reserva' )

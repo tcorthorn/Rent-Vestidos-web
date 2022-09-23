@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from catalogo.forms import ReservaForm
+
 from .models import Proveedor, Categoria, Vestido,  Cliente, Arriendo, Reserva
 from django.views import generic
 from datetime import date
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.exceptions import ValidationError
+import datetime #para chequear rango de fecha de reserva.
 
 def index(request):
     """
@@ -140,7 +142,7 @@ class VestidoCreate(CreateView):
 
 class VestidoUpdate(UpdateView):
     model = Vestido
-    fields = ['status','reservado','fecha_reservada']
+    fields = ['status','reservado']
     success_url = reverse_lazy('vestidos')
 
 class VestidoDelete(DeleteView):
@@ -152,6 +154,10 @@ class ReservaCreate(CreateView):
     #form_class = ReservaForm
     fields = '__all__'
     success_url = reverse_lazy('vestidos')
+
+    def clean(self):
+        if self.fecha_reservada < datetime.date.today():
+            raise ValidationError(('Fecha inválida - reserva en el pasado'))
 
 class ReservaUpdate(UpdateView):
     model = Reserva
