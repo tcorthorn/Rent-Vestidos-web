@@ -8,8 +8,6 @@
         <th scope="">CLIENTE</th>
         <th scope="">SKU</th>
         <th scope="">FECHA RESERVADA</th>
-        <th scope="">DATO CREADO</th>
-        <th scope="">DATO MODIFICADO</th>
       </tr>
     </thead>
     
@@ -18,8 +16,6 @@
         <td><a href="{% url 'detalle-cliente' reserva.pk %}">{% for cliente in reserva.cliente.all %} {{ cliente }}{% if not forloop.last %}, {% endif %}{% endfor %}</a></td>
         <td><a href="{% url 'detalle-vestido' reserva.pk %}"> {{ reserva.sku }}</a></td>
         <td>{{ reserva.fecha_reservada }}</td>
-        <td>{{ reserva.creado }}</td>
-        <td>{{ reserva.modificado }}</td>
       </tr>
     </tbody>
   </table>
