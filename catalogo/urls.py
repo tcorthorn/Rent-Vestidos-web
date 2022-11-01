@@ -38,7 +38,7 @@ urlpatterns += [
 
 urlpatterns += [
     path('vestido/create/', views.VestidoCreate.as_view(), name='vestido_create'),
-    path('vestido/(<pk>/update/', views.VestidoUpdate.as_view(), name='vestido_update'),
+    path('vestido/<pk>/update/', views.VestidoUpdate.as_view(), name='vestido_update'),
     path('vestido/<pk>/delete/', views.VestidoDelete.as_view(), name='vestido_delete'),
 ]
 
