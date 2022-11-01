@@ -32,7 +32,7 @@ urlpatterns += [
 
 urlpatterns += [
     path('arriendo/create/', views.ArriendoCreate.as_view(), name='arriendo_create'),
-    path('arriendo/(<pk>/update/', views.ArriendoUpdate.as_view(), name='arriendo_update'),
+    path('arriendo/<pk>/update/', views.ArriendoUpdate.as_view(), name='arriendo_update'),
     path('arriendo/<pk>/delete/', views.ArriendoDelete.as_view(), name='arriendo_delete'),
 ]
 
@@ -44,7 +44,7 @@ urlpatterns += [
 
 urlpatterns += [
     path('reserva/create/', views.ReservaCreate.as_view(), name='reserva_create'),
-    path('reserva/(<pk>/update/', views.ReservaUpdate.as_view(), name='reserva_update'),
+    path('reserva/<pk>/update/', views.ReservaUpdate.as_view(), name='reserva_update'),
     path('reserva/<pk>/delete/', views.ReservaDelete.as_view(), name='reserva_delete'),
 ]
 
